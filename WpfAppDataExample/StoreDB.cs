@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfAppDataExample
 {
@@ -27,7 +28,7 @@ namespace WpfAppDataExample
             {
                 //ABRIMOS LA CONEXION
                 con.Open();
-                //EJECUTAMOS EL COMANDO
+                //EJECUTAMOS EL COMANDO READER PARA LEER
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
                 if (reader.Read())
                 {
@@ -45,6 +46,27 @@ namespace WpfAppDataExample
                 {
                     return null;
                 }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        internal void UpdateProduct(Product product)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("UpdateProduct", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ProductID", product.ProductID);
+            cmd.Parameters.AddWithValue("@ModelNumber", product.ModelNumber);
+            cmd.Parameters.AddWithValue("@ModelName", product.ModelName);
+            cmd.Parameters.AddWithValue("@UnitCost", product.UnitCost);
+            cmd.Parameters.AddWithValue("@Description", product.Description);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
             }
             finally
             {

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="StoreDatabase" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dbTienda;Integrated Security=True;Connect Timeout=30;Encrypt=False;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

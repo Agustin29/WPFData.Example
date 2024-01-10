@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppDataExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        WindowStartupLocation="CenterScreen"
+        Title="Data Binding" Height="450" Width="800">
+    <StackPanel>
+        <!--DEFINICION DE PRIMERA FILA-->
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--product id-->
+            <TextBlock Margin="5" Grid.Column="0" Grid.Row="0">Product ID:</TextBlock>
+            <TextBox Margin="5" Grid.Column="1" Grid.Row="0" Name="txtProductId"></TextBox>
+            <Button Margin="5" Grid.Column="2" Grid.Row="0" Name="cmdGetProduct">Buscar Producto</Button>
+        </Grid>
+        <Grid x:Name="gridProductDetails">
+            <!--DEFINICION DE GRID COLUMN Y ROWS-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--model number-->
+            <TextBlock Margin="7" Grid.Row="0" Grid.Column="0">Model Number:</TextBlock>
+            <TextBox Margin="5" Grid.Row="0" Grid.Column="1" Text="{Binding Path=ModelNumber}"></TextBox>
+            <!--model name-->
+            <TextBlock Margin="7" Grid.Row="1" Grid.Column="0">Model Name:</TextBlock>
+            <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding Path=ModelName}"></TextBox>
+            <!--model name-->
+            <TextBlock Margin="7" Grid.Row="2" Grid.Column="0">Unit Cost:</TextBlock>
+            <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=UnitCost}"></TextBox>
+            <!--model name-->
+            <TextBlock Margin="7" Grid.Row="3" Grid.Column="0">Description:</TextBlock>
+            <TextBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Description}"></TextBox>
+            <!--BOTON DE ACTUALIZAR-->
+            <Button x:Name="cmdUpdateProduct" Grid.Row="6" Margin="10">Actualizar Producto</Button>
+        </Grid>
+    </StackPanel>
 </Window>
